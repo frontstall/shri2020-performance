@@ -3,19 +3,23 @@ const postcss = require('gulp-postcss');
 const uncss = require('postcss-uncss');
 const cssnano = require('cssnano');
 
-const plugins = [
-  uncss({
-    html: ['index.html']
-  }),
-  cssnano(),
-];
-
-const css = (cb) => {
+const min = (cb) => {
   gulp.src('./css/*.css')
-    .pipe(postcss(plugins))
+    .pipe(postcss([cssnano()]))
     .pipe(gulp.dest('./css/'))
 
   cb();
 }
 
-exports.css = css;
+const opt = (cb) => {
+  gulp.src('./css/*.css')
+    .pipe(postcss([uncss({
+      html: ['index.html']
+    })]))
+    .pipe(gulp.dest('./css/'))
+
+  cb();
+}
+
+exports.min = min;
+exports.opt = opt;
