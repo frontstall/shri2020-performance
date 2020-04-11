@@ -1,5 +1,14 @@
 "use strict";
 
+// работает:
+
+$(document).ready(function(){
+
+    var carousel = $("#carousel");
+
+    carousel.owlCarousel();
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     $('.card').each(function(e) {
         if ($(this).hasClass('card_size_s')) {
